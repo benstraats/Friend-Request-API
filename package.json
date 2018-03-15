@@ -1,23 +1,53 @@
 {
-  "name": "FriendRequestServer",
-  "version": "1.0.0",
+  "name": "friend-request",
   "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "",
+  "main": "src",
+  "keywords": [
+    "feathers"
+  ],
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  "contributors": [],
+  "bugs": {},
+  "directories": {
+    "lib": "src",
+    "test": "test/"
+  },
+  "engines": {
+    "node": "^8.0.0",
+    "npm": ">= 3.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run eslint && npm run mocha",
+    "eslint": "eslint src/. test/. --config .eslintrc.json",
+    "start": "node src/",
+    "mocha": "mocha test/ --recursive --exit"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/benstraats/FriendRequestServer.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/benstraats/FriendRequestServer/issues"
-  },
-  "homepage": "https://github.com/benstraats/FriendRequestServer#readme",
   "dependencies": {
-    "@feathersjs/feathers": "^3.1.3"
+    "@feathersjs/authentication": "^2.1.2",
+    "@feathersjs/authentication-jwt": "^2.0.0",
+    "@feathersjs/authentication-local": "^1.1.0",
+    "@feathersjs/configuration": "^1.0.2",
+    "@feathersjs/errors": "^3.3.0",
+    "@feathersjs/express": "^1.2.0",
+    "@feathersjs/feathers": "^3.1.3",
+    "@feathersjs/socketio": "^3.2.0",
+    "compression": "^1.7.2",
+    "cors": "^2.8.4",
+    "feathers-mongodb": "^3.0.1",
+    "helmet": "^3.12.0",
+    "mongodb": "^3.0.4",
+    "serve-favicon": "^2.4.5",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "mocha": "^5.0.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   }
 }
