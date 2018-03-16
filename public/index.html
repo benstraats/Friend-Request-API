@@ -33,6 +33,44 @@
   <body>
     <main class="container">
       <h2 class="center-text">Welcome to the friend request API home page.</h2>
+      <h3>Friend request API explained</h3><br><br>
+
+      USERS<br>
+      ./users - GET - find - returns the list of users (used for search)<br>
+      ./users/x - GET - get - returns the specific users info (Not Allowed)<br>
+      ./users - POST - create - Creates a new user specific to the payload (email, name, and password as JSON)<br>
+      ./users or ./users/x - PUT - update - Updates the user(s) info (Not Allowed)<br>
+      ./users or ./users/x - PATCH - patch - Update a user field (Not Allowed)<br>
+      ./users or ./users/x - DELETE - delete - Delete a specific user (Not Allowed)<br><br>
+
+      AUTHENTICATION<br>
+      ./authentication - POST - create - Gets a authentication for the user given in the payload if successful (strategy, email, password as JSON)<br><br>
+
+      <br><b>Must be authenticated and send the accessToken with each of the below calls. Access token holds the info of the current user</b><br><br>
+
+      FRIENDS<br>
+      ./friends - GET - find - Returns the list of users current user is friend with<br>
+      ./friends/x - GET - get - Returns true if current user and target are friends<br>
+      ./friends - POST - create - Creates a friend bond between current user and target only if target requested to be friends with current user<br>
+      ./friends or ./friends/x - PUT - update - Not Allowed<br>
+      ./friends or ./friends/x - PATCH - patch - Not Allowed<br>
+      ./friends or ./friends/x - DELETE - delete - Will delete the friendship (Not Allowed)<br><br>
+
+      REQUESTS<br>
+      ./requests - GET - find - Gets all the requests (both as requestee and requester) for user<br>
+      ./requests/x - GET - get - Returns status of currUser and target (no request, already friends, currUser is requestee, currUser is requester)<br>
+      ./requests - POST - create - Creates a request where currUser is requester and target is requestee<br>
+      ./requests or ./requests/x - PUT - update - Updates the request (Not Allowed)<br>
+      ./requests or ./requests/x - PATCH - patch - Updates the request (Not Allowed)<br>
+      ./requests or ./requests/x - DELETE - delete - Deletes the request (Not Allowed)<br><br>
+
+      PROFILE<br>
+      ./profile - GET - find - Gets the profile for the current user<br>
+      ./profile/x - GET - get - Gets the profile for the specified user<br>
+      ./profile - POST - create - Creates the profile for the user<br>
+      ./profile or ./profile/x - PUT - update - Updates the whole profile for the currUser<br>
+      ./profile or ./profile/x - PATCH - patch - Updates a specific row for the currUser<br>
+      ./profile or ./profile/x - DELETE - delete - Deletes the profile of the user (Not Allowed)
     </main>
   </body>
 </html>
