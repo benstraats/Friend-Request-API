@@ -6,13 +6,20 @@ const {
 
 const notAllowed = require('../../hooks/not-allowed');
 
+const createUserDataIntegrity = require('../../hooks/create-user-data-integrity');
+
 module.exports = {
   before: {
     all: [],
     find: [ authenticate('jwt') ],
     get: [ authenticate('jwt') ],
-    create: [ hashPassword() ],
-    update: [hashPassword(), authenticate('jwt'), notAllowed()],
+    create: [hashPassword(), createUserDataIntegrity()],
+    update: [
+      hashPassword(),
+      authenticate('jwt'),
+      notAllowed(),
+      createUserDataIntegrity()
+    ],
     patch: [hashPassword(), authenticate('jwt'), notAllowed()],
     remove: [authenticate('jwt'), notAllowed()]
   },
