@@ -10,10 +10,12 @@ const createUserDataIntegrity = require('../../hooks/create-user-data-integrity'
 
 const ensureUserDoesntExist = require('../../hooks/ensure-user-doesnt-exist');
 
+const userSearch = require('../../hooks/user-search');
+
 module.exports = {
   before: {
     all: [],
-    find: [ authenticate('jwt') ],
+    find: [ authenticate('jwt'), userSearch() ],
     get: [ authenticate('jwt') ],
     create: [hashPassword(), createUserDataIntegrity(), ensureUserDoesntExist()],
     update: [
