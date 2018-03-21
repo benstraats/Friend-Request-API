@@ -7,11 +7,13 @@ module.exports = function (options = {}) {
 
     const search = context.params.query.search
 
-    context.params.query = {
-      $or: [
-        {name: {$regex: search}},
-        {email: {$regex: search}}
-      ]
+    if (!(search === undefined || search === "")) {
+      context.params.query = {
+        $or: [
+          {name: {$regex: search}},
+          {email: {$regex: search}}
+        ]
+      }
     }
 
     return context;
