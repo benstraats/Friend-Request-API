@@ -5,16 +5,15 @@
 module.exports = function (options = {}) {
   return async context => {
 
-    const search = context.params.query.search
-    const skip = context.params.query.skip
+    const search = context.params.query.$search
+    
+    delete context.params.query.$search
 
-    if (search !== undefined) {
-      context.params.query = {
-        $or: [
+    if (search !== undefined && search !== "") {
+      context.params.query.$or = [
           {name: {$regex: search}},
           {email: {$regex: search}}
         ]
-      }
 
       context.params.query.$sort = {
         name: 1,
@@ -22,12 +21,6 @@ module.exports = function (options = {}) {
       }
 
       context.params.query.$select = ['name', 'email']
-    }
-
-    if (skip !== undefined || skip !== "") {//should check it can be num
-      let intSkip = parseInt(skip)
-
-      context.params.query.$skip = intSkip
     }
 
     return context;
