@@ -1,15 +1,17 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
 const notAllowed = require('../../hooks/not-allowed');
+const createdAt = require('../../hooks/created-at');
+const updatedAt = require('../../hooks/updated-at');
 
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
     find: [notAllowed()],
     get: [],
-    create: [],
-    update: [],
-    patch: [],
+    create: [createdAt()],
+    update: [updatedAt()],
+    patch: [updatedAt()],
     remove: []
   },
 
