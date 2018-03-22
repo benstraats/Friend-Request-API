@@ -4,7 +4,7 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    const currUser = context.params.user || 'bob'
+    const currUser = context.params.user
 
     if(!context.data.requestee) {
       throw new Error("A request must have a requestee");
