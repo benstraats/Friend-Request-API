@@ -21,27 +21,29 @@
 
 
       h2 {
-        font-size: 2em;
+        font-size: 4em;
         font-weight: 100;
       }
 
-      table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-      }
+      table {
+          border-collapse: collapse;
+      }      
 
       th, td {
-        padding: 15px;
+        padding: 5px;
+        border-bottom: 1px solid #ddd;
       }
 
       th {
         text-align: left;
       }
+
+      tr:hover {background-color: #f5f5f5;}
     </style>
   </head>
   <body>
-    <main class="container">
-      <h2 class="center-text">Welcome to Friend Request</h2><br><br>
+    <main class="container"><br><br>
+      <h2 class="center-text">Welcome to Friend Request</h2><br><br><br><br>
       <h3>Downloads</h3>
       <a href="./Friend-Request.apk">Android App - Version 0.2</a>
       <!-- Commenting out since table is unnecessary at this stage of early development -->
@@ -69,7 +71,7 @@
         </tr>
       </table>
       -->
-      <br><br><br><br>
+      <br><br><br><br><br>
 
 
 
@@ -78,11 +80,11 @@
       <a href="https://github.com/benstraats/NewFriendRequest">Android App</a><br>
       <a href="https://github.com/benstraats/Friend-Request-iOS">iOS App</a><br>
       <a href="https://github.com/benstraats/Friend-Request-Website">Web Front End</a><br>
-      <a href="https://github.com/benstraats/Friend-Request-Machine-Learning">Machine Learning</a><br><br><br><br>
+      <a href="https://github.com/benstraats/Friend-Request-Machine-Learning">Machine Learning</a><br><br><br><br><br>
 
 
 
-      <h3>Friend request API Documentation:</h3>
+      <h3>Friend request API Documentation:</h3><br>
       <table>
         <tr>
           <th>Section</th>
