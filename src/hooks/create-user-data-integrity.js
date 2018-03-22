@@ -29,6 +29,12 @@ module.exports = function (options = {}) {
       throw new Error('Password must have atleast 6 characters');
     }
 
+    context.data = {
+      name: context.data.name,
+      email: context.data.email,
+      password: context.data.password
+    }
+
     return context;
   };
 };

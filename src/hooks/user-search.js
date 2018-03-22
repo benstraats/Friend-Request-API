@@ -9,7 +9,7 @@ module.exports = function (options = {}) {
     
     delete context.params.query.$search
 
-    if (search !== undefined && search !== "") {
+    if (search !== undefined) {
       context.params.query.$or = [
           {name: {$regex: search}},
           {email: {$regex: search}}
