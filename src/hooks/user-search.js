@@ -15,6 +15,13 @@ module.exports = function (options = {}) {
           {email: {$regex: search}}
         ]
       }
+
+      context.params.query.$sort = {
+        name: 1,
+        email: 1
+      }
+
+      context.params.query.$select = ['name', 'email']
     }
 
     if (skip !== undefined || skip !== "") {//should check it can be num
@@ -22,13 +29,6 @@ module.exports = function (options = {}) {
 
       context.params.query.$skip = intSkip
     }
-
-    context.params.query.$sort = {
-      name: 1,
-      email: 1
-    }
-
-    context.params.query.$select = ['name', 'email']
 
     return context;
   };
