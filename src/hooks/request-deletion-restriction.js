@@ -5,14 +5,7 @@
 module.exports = function (options = {}) {
   return async context => {
 
-    const currUser = context.params.user
     const id = context.id
-
-    context.params.query.$or = [{
-      requestee: currUser
-    }, {
-      requester: currUser
-    }]
 
     if (id === null) {
       throw new Error('Bulk delete isn\'t supported')
