@@ -6,11 +6,12 @@ const updatedAt = require('../../hooks/updated-at');
 const friendCreationValidation = require('../../hooks/friend-creation-validation');
 const friendGetRestriction = require('../../hooks/friend-get-restriction');
 const friendDeletionRestriction = require('../../hooks/friend-deletion-restriction');
+const friendFindRestriction = require('../../hooks/friend-find-restriction');
 
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
-    find: [],
+    find: [friendFindRestriction()],
     get: [],
     create: [friendCreationValidation(), createdAt()],
     update: [notAllowed(), updatedAt()],
