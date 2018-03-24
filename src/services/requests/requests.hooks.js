@@ -6,11 +6,12 @@ const updatedAt = require('../../hooks/updated-at');
 const requestGetRestriction = require('../../hooks/request-get-restriction');
 const requestCreationValidation = require('../../hooks/request-creation-validation');
 const requestDeletionRestriction = require('../../hooks/request-deletion-restriction');
+const requestFindRestriction = require('../../hooks/request-find-restriction');
 
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
-    find: [],
+    find: [requestFindRestriction()],
     get: [],
     create: [requestCreationValidation(), createdAt()],
     update: [notAllowed(), updatedAt()],
