@@ -3,6 +3,7 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 const notAllowed = require('../../hooks/not-allowed');
 const createdAt = require('../../hooks/created-at');
 const updatedAt = require('../../hooks/updated-at');
+const requestGetRestriction = require('../../hooks/request-get-restriction');
 
 module.exports = {
   before: {
@@ -18,7 +19,7 @@ module.exports = {
   after: {
     all: [],
     find: [],
-    get: [],
+    get: [requestGetRestriction()],
     create: [],
     update: [],
     patch: [],
