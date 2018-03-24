@@ -5,6 +5,7 @@ const createdAt = require('../../hooks/created-at');
 const updatedAt = require('../../hooks/updated-at');
 const requestGetRestriction = require('../../hooks/request-get-restriction');
 const requestCreationValidation = require('../../hooks/request-creation-validation');
+const requestDeletionRestriction = require('../../hooks/request-deletion-restriction');
 
 module.exports = {
   before: {
@@ -14,7 +15,7 @@ module.exports = {
     create: [requestCreationValidation(), createdAt()],
     update: [notAllowed(), updatedAt()],
     patch: [notAllowed(), updatedAt()],
-    remove: []
+    remove: [requestDeletionRestriction()]
   },
 
   after: {
