@@ -12,7 +12,7 @@ module.exports = function (options = {}) {
 
     const requestedUser = context.data.requestee.trim();
 
-    if (currUser === requesterUser) {
+    if (currUser === requestedUser) {
       throw new Error("Can\'t request themself.")
     }
 
