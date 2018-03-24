@@ -44,8 +44,7 @@ module.exports = function (options = {}) {
     //check request doesnt already exist (either way relationship)
     await context.service.find({
       query: {
-        $or: [
-          {
+        $or: [{
             requestee: requestedUser,
             requester: currUser
         }, {
