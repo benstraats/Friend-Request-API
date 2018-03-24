@@ -10,6 +10,7 @@ const userSearch = require('../../hooks/user-search');
 const createdAt = require('../../hooks/created-at');
 const updatedAt = require('../../hooks/updated-at');
 const userCreationValidation = require('../../hooks/user-creation-validation');
+const userDeletionRestriction = require('../../hooks/user-deletion-restriction');
 
 module.exports = {
   before: {
@@ -29,7 +30,7 @@ module.exports = {
       updatedAt()
     ],
     patch: [hashPassword(), authenticate('jwt'), notAllowed(), updatedAt()],
-    remove: [authenticate('jwt'), notAllowed()]
+    remove: [authenticate('jwt'), userDeletionRestriction()]
   },
 
   after: {
