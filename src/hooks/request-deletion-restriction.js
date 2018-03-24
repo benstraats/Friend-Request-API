@@ -6,7 +6,7 @@ module.exports = function (options = {}) {
   return async context => {
 
     const id = context.id
-    const currUser = context.params.user
+    const currUser = context.params.user.email
 
     if (id === null) {
       //Make sure params are safe here and we dont delete a good request

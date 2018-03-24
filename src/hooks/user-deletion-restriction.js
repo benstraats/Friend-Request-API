@@ -4,7 +4,7 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    const currUser = context.params.user
+    const currUser = context.params.user.email
 
     await context.service.get(context.id).then((data) => {
       if (data.email !== currUser) {
