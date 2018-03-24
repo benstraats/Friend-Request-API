@@ -9,9 +9,9 @@ const restrictRequests = require('../../hooks/restrict-requests');
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
-    find: [restrictRequests()],
+    find: [],
     get: [],
-    create: [createdAt(), createRequestValidation()],
+    create: [createdAt()],
     update: [notAllowed(), updatedAt()],
     patch: [notAllowed(), updatedAt()],
     remove: []

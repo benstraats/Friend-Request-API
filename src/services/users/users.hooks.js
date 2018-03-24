@@ -16,12 +16,11 @@ module.exports = {
     all: [],
     find: [ authenticate('jwt'), userSearch() ],
     get: [ authenticate('jwt') ],
-    create: [ensureUserDoesntExist(), createUserDataIntegrity(), hashPassword(), createdAt()],
+    create: [ensureUserDoesntExist(),hashPassword(), createdAt()],
     update: [
       hashPassword(),
       authenticate('jwt'),
       notAllowed(),
-      createUserDataIntegrity(), 
       updatedAt()
     ],
     patch: [hashPassword(), authenticate('jwt'), notAllowed(), updatedAt()],
