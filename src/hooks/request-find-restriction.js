@@ -5,13 +5,12 @@
 module.exports = function (options = {}) {
   return async context => {
     const currUser = context.params.user
-
-    let orQuery = context.params.query.$or
-
-    orQuery.push({requestee: currUser})
-    orQuery.push({requester: currUser})
-
-    context.params.query.$or = orQuery
+    
+    context.params.query.$or= [{
+      requestee: currUser
+    }, {
+      requester: currUser
+    }]
 
     return context;
   };
