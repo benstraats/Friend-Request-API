@@ -4,14 +4,11 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-
     const id = context.id
 
     if (id === null) {
-      //Make sure params are safe here and we dont delete a good request
-    }
-    else{
-      //Will error if we dont have access
+      //make sure params are safe here and we dont delete a good request
+    } else {
       await context.service.get(id)
     }
 
