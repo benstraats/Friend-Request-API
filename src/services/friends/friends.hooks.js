@@ -4,6 +4,7 @@ const notAllowed = require('../../hooks/not-allowed');
 const createdAt = require('../../hooks/created-at');
 const updatedAt = require('../../hooks/updated-at');
 const friendCreationValidation = require('../../hooks/friend-creation-validation');
+const friendGetRestriction = require('../../hooks/friend-get-restriction');
 
 module.exports = {
   before: {
@@ -19,7 +20,7 @@ module.exports = {
   after: {
     all: [],
     find: [],
-    get: [],
+    get: [friendGetRestriction()],
     create: [],
     update: [],
     patch: [],
