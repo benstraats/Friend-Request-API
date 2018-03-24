@@ -12,6 +12,10 @@ module.exports = function (options = {}) {
 
     const requestedUser = context.data.requestee.trim();
 
+    if (currUser === requesterUser) {
+      throw new Error("Can\'t request themself.")
+    }
+
     //Check target is valid
     await context.app.service('users').find({
       query: {
