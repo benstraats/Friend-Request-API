@@ -37,17 +37,18 @@ module.exports = function (options = {}) {
       if (data.data.length) {
         throw new Error('Users are already friends.');
       }
-      await context.service.find({
-        query: {
-          user1: currUser,
-          user2: targetUser
-        }
-      }).then((data) => {
-        if (data.data.length) {
-          throw new Error('Users are already friends.');
-        }
-      })
     });
+
+    await context.service.find({
+      query: {
+        user1: currUser,
+        user2: targetUser
+      }
+    }).then((data) => {
+      if (data.data.length) {
+        throw new Error('Users are already friends.');
+      }
+    })
 
     //Check the request exists
     await context.app.service('requests').find({
