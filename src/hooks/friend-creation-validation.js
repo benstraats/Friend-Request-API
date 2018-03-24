@@ -6,14 +6,14 @@ module.exports = function (options = {}) {
   return async context => {
     const currUser = context.params.user
 
-    if (!context.data.targetUser) {
-      throw new Error("A friendship must have two users")
+    if(!context.data.targetUser) {
+      throw new Error("A friedship must have a targetUser");
     }
 
-    const targetUser = context.data.targetUser.trim()
+    const targetUser = context.data.targetUser.trim();
 
     if (currUser === targetUser) {
-      throw new Error("User can\'t be friends with themselves.")
+      throw new Error("Can\'t be friends with themself.")
     }
 
     //Check target is valid
@@ -30,44 +30,40 @@ module.exports = function (options = {}) {
     //check not friends
     await context.service.find({
       query: {
-        $or: [
-          {
-            user1: targetUser,
-            user2: currUser
-        }, {
-          user1: currUser,
-          user2: targetUser
-        }]
+        user1: targetUser,
+        user2: currUser
       }
     }).then((data) => {
       if (data.data.length) {
         throw new Error('Users are already friends.');
       }
+      await context.service.find({
+        query: {
+          user1: currUser,
+          user2: targetUser
+        }
+      }).then((data) => {
+        if (data.data.length) {
+          throw new Error('Users are already friends.');
+        }
+      })
     });
 
-    //check not friends
+    //Check the request exists
     await context.app.service('requests').find({
       query: {
-        requestee: currUser,
-        requester: targetUser
+          requestee: currUser,
+          requester: targetUser
       }
     }).then((data) => {
       if (!data.data.length) {
-        throw new Error('Target user hasn\'t requested to be friends');
-      } else {
-        //delete the request
-        await context.app.service('requests').remove({
-          query: {
-            requestee: currUser,
-            requester: targetUser
-          }
-        })
+        throw new Error('Users don\'t have a request between them');
       }
     });
 
-    context.params.query = {
-      user1: currUser,
-      user2: targetUser
+    context.data = {
+      user1: targetUser,
+      user2: currUser
     }
 
     return context;

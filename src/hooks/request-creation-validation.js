@@ -30,36 +30,45 @@ module.exports = function (options = {}) {
     //check not friends
     await context.app.service('friends').find({
       query: {
-        $or: [
-          {
-            user1: requestedUser,
-            user2: currUser
-        }, {
-          user1: currUser,
-          user2: requestedUser
-        }]
+        user1: requestedUser,
+        user2: currUser
       }
     }).then((data) => {
       if (data.data.length) {
         throw new Error('Users are already friends.');
       }
+      await context.service.find({
+        query: {
+          user1: currUser,
+          user2: requestedUser
+        }
+      }).then((data) => {
+        if (data.data.length) {
+          throw new Error('Users are already friends.');
+        }
+      })
     });
 
-    //check request doesnt already exist (either way relationship)
     await context.service.find({
       query: {
-        $or: [{
-            requestee: requestedUser,
-            requester: currUser
-        }, {
-          requestee: currUser,
-          requester: requestedUser
-        }]
+        requestee: requestedUser,
+        requester: currUser
       }
     }).then((data) => {
       if (data.data.length) {
-        throw new Error('Users already have a request between them');
+        throw new Error('Current User has already sent a request');
       }
+      await context.service.find({
+        query: {
+          requestee: currUser,
+          requester: requestedUser
+        }
+      }).then((data) => {
+        if (data.data.length) {
+          //Could just accept friend here and now
+          throw new Error('Current user has already been requested by requestee');
+        }
+      })
     });
 
     context.data = {
