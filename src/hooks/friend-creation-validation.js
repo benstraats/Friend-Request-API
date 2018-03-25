@@ -5,6 +5,7 @@
 module.exports = function (options = {}) {
   return async context => {
     const currUser = context.params.user.email
+    const requestID = context.data.requestID
 
     if(!context.data.targetUser) {
       throw new Error("A friedship must have a targetUser");
@@ -61,6 +62,9 @@ module.exports = function (options = {}) {
         throw new Error('Users don\'t have a request between them');
       }
     });
+
+    //delete the request
+    await context.app.service('requests').remove(requestID);
 
     context.data = {
       user1: targetUser,

@@ -5,20 +5,21 @@
 module.exports = function (options = {}) {
   return async context => {
 
-    const id = context.id
-    const currUser = context.params.user.email
-
-    if (id === null) {
-      //Make sure params are safe here and we dont delete a good request
-      context.params.query.$or= [{
-        requestee: currUser
-      }, {
-        requester: currUser
-      }]
-    }
-    else{
-      //Will error if we dont have access
-      await context.service.get(id)
+    if (context.params.user !== undefined && context.params.user !== null) {
+      const id = context.id
+      const currUser = context.params.user.email
+      if (id === null) {
+        //Make sure params are safe here and we dont delete a good request
+        context.params.query.$or= [{
+          requestee: currUser
+        }, {
+          requester: currUser
+        }]
+      }
+      else{
+        //Will error if we dont have access
+        await context.service.get(id)
+      }
     }
 
     return context;
