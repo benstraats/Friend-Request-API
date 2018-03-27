@@ -15,7 +15,7 @@ module.exports = function (options = {}) {
       const otherUser = data.requester
 
       context.data = {
-        user1: targetUser,
+        user1: otherUser,
         user2: currUser
       }
 
