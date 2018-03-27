@@ -4,45 +4,33 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    const currUser = context.params.user.email
+    const currUser = "" + context.params.user._id
 
-    if(!context.data.requestee) {
+    //Check request has a requestee
+    if(!context.data.requesteeID) {
       throw new Error("A request must have a requestee");
     }
 
-    const requestedUser = context.data.requestee.trim();
+    const requestedUser = context.data.requesteeID.trim();
 
+    //Check not requesting themselves
     if (currUser === requestedUser) {
       throw new Error("Can\'t request themself.")
     }
 
     //Check target is valid
-    await context.app.service('users').find({
-      query: {
-        email: requestedUser
-      }
-    }).then((data) => {
-      if (!data.data.length) {
-        throw new Error('Requested user doesn\'t exist');
-      }
-    });
+    await context.app.service('users').get(requestedUser)
 
     //check not friends
     await context.app.service('friends').find({
       query: {
-        user1: requestedUser,
-        user2: currUser
-      }
-    }).then((data) => {
-      if (data.data.length) {
-        throw new Error('Users are already friends.');
-      }
-    });
-
-    await context.service.find({
-      query: {
-        user1: currUser,
-        user2: requestedUser
+        $or: [{
+          user1: requestedUser,
+          user2: currUser
+        }, {
+          user1: currUser,
+          user2: requestedUser
+        }]
       }
     }).then((data) => {
       if (data.data.length) {
@@ -52,24 +40,17 @@ module.exports = function (options = {}) {
 
     await context.service.find({
       query: {
-        requestee: requestedUser,
-        requester: currUser
+        $or: [{
+          requestee: requestedUser,
+          requester: currUser
+        }, {
+          requestee: currUser,
+          requester: requestedUser
+        }]
       }
     }).then((data) => {
       if (data.data.length) {
-        throw new Error('Current User has already sent a request');
-      }
-    });
-
-    await context.service.find({
-      query: {
-        requestee: currUser,
-        requester: requestedUser
-      }
-    }).then((data) => {
-      if (data.data.length) {
-        //Could just accept friend here and now
-        throw new Error('Current user has already been requested by requestee');
+        throw new Error('There is already a request between users');
       }
     })
 
