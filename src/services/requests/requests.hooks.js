@@ -3,24 +3,26 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 const notAllowed = require('../../hooks/not-allowed');
 const createdAt = require('../../hooks/created-at');
 const updatedAt = require('../../hooks/updated-at');
-const createRequestValidation = require('../../hooks/create-request-validation');
-const restrictRequests = require('../../hooks/restrict-requests');
+const requestGetRestriction = require('../../hooks/request-get-restriction');
+const requestCreationValidation = require('../../hooks/request-creation-validation');
+const requestDeletionRestriction = require('../../hooks/request-deletion-restriction');
+const requestFindRestriction = require('../../hooks/request-find-restriction');
 
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
-    find: [restrictRequests()],
+    find: [requestFindRestriction()],
     get: [],
-    create: [createdAt(), createRequestValidation()],
+    create: [requestCreationValidation(), createdAt()],
     update: [notAllowed(), updatedAt()],
     patch: [notAllowed(), updatedAt()],
-    remove: []
+    remove: [requestDeletionRestriction()]
   },
 
   after: {
     all: [],
     find: [],
-    get: [],
+    get: [requestGetRestriction()],
     create: [],
     update: [],
     patch: [],

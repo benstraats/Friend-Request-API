@@ -5,27 +5,32 @@ const {
 } = require('@feathersjs/authentication-local').hooks;
 
 const notAllowed = require('../../hooks/not-allowed');
-const createUserDataIntegrity = require('../../hooks/create-user-data-integrity');
-const ensureUserDoesntExist = require('../../hooks/ensure-user-doesnt-exist');
+const userDoesntExist = require('../../hooks/user-doesnt-exist');
 const userSearch = require('../../hooks/user-search');
 const createdAt = require('../../hooks/created-at');
 const updatedAt = require('../../hooks/updated-at');
+const userCreationValidation = require('../../hooks/user-creation-validation');
+const userDeletionRestriction = require('../../hooks/user-deletion-restriction');
 
 module.exports = {
   before: {
     all: [],
     find: [ authenticate('jwt'), userSearch() ],
     get: [ authenticate('jwt') ],
-    create: [ensureUserDoesntExist(), createUserDataIntegrity(), hashPassword(), createdAt()],
+    create: [
+      userDoesntExist(),
+      userCreationValidation(),
+      hashPassword(),
+      createdAt()
+    ],
     update: [
       hashPassword(),
       authenticate('jwt'),
       notAllowed(),
-      createUserDataIntegrity(), 
       updatedAt()
     ],
     patch: [hashPassword(), authenticate('jwt'), notAllowed(), updatedAt()],
-    remove: [authenticate('jwt'), notAllowed()]
+    remove: [authenticate('jwt'), userDeletionRestriction()]
   },
 
   after: {

@@ -5,6 +5,10 @@
 module.exports = function (options = {}) {
   return async context => {
 
+    let email = context.data.email;
+    let name = context.data.name;
+    let password = context.data.password;
+
     //check it contains email, name, and password
     if(!context.data.email) {
       throw new Error('A user must have an email');
@@ -14,25 +18,26 @@ module.exports = function (options = {}) {
       throw new Error("A user much have a password");
     }
 
-    context.data.email = context.data.email.trim();
-    context.data.name = context.data.name.trim();
-    context.data.password = context.data.password.trim();
+    email = email.trim();
+    name = name.trim();
+    password = password.trim();
 
     //check all are valid strings with length and no numbers in name, etc
-    if (context.data.email.length < 3) {
+    if (email.length < 3) {
       throw new Error('Email must have atleast 3 characters');
-    } else if(context.data.name.length < 3) {
+    } else if(name.length < 3) {
       throw new Error('Name must have atleast 3 cahracters');
-    } else if(!(/^[a-zA-Z ]+$/.test(context.data.name))) {
+    } else if(!(/^[a-zA-Z ]+$/.test(name))) {
       throw new Error('Name has invalid characters')
-    } else if(context.data.password.length < 6) {
+    } else if(password.length < 6) {
       throw new Error('Password must have atleast 6 characters');
     }
 
+    //make sure no extra data is inserted
     context.data = {
-      name: context.data.name,
-      email: context.data.email,
-      password: context.data.password
+      name: name,
+      email: email,
+      password: password
     }
 
     return context;
