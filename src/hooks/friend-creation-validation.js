@@ -14,15 +14,15 @@ module.exports = function (options = {}) {
 
       const otherUser = data.requester
 
-      //delete the request
-      await context.app.service('requests').remove(requestID);
-
       context.data = {
         user1: targetUser,
         user2: currUser
       }
 
     });
+
+    //delete the request
+    await context.app.service('requests').remove(requestID);
 
     return context;
   };
