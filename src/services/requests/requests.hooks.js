@@ -7,10 +7,12 @@ const requestGetRestriction = require('../../hooks/request-get-restriction');
 const requestCreationValidation = require('../../hooks/request-creation-validation');
 const requestDeletionRestriction = require('../../hooks/request-deletion-restriction');
 const requestFindRestriction = require('../../hooks/request-find-restriction');
+const attachUserInfo = require('../../hooks/attach-user-info');
+const setLimitMax = require('../../hooks/set-limit-max');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [authenticate('jwt'), setLimitMax()],
     find: [requestFindRestriction()],
     get: [],
     create: [requestCreationValidation(), createdAt()],
@@ -21,8 +23,8 @@ module.exports = {
 
   after: {
     all: [],
-    find: [],
-    get: [requestGetRestriction()],
+    find: [attachUserInfo()],
+    get: [requestGetRestriction(), attachUserInfo()],
     create: [],
     update: [],
     patch: [],

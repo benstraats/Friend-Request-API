@@ -7,10 +7,13 @@ const friendCreationValidation = require('../../hooks/friend-creation-validation
 const friendGetRestriction = require('../../hooks/friend-get-restriction');
 const friendDeletionRestriction = require('../../hooks/friend-deletion-restriction');
 const friendFindRestriction = require('../../hooks/friend-find-restriction');
+const attachUserInfo = require('../../hooks/attach-user-info');
+
+const setLimitMax = require('../../hooks/set-limit-max');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [authenticate('jwt'), setLimitMax()],
     find: [friendFindRestriction()],
     get: [],
     create: [friendCreationValidation(), createdAt()],
@@ -21,8 +24,8 @@ module.exports = {
 
   after: {
     all: [],
-    find: [],
-    get: [friendGetRestriction()],
+    find: [attachUserInfo()],
+    get: [friendGetRestriction(), attachUserInfo()],
     create: [],
     update: [],
     patch: [],
