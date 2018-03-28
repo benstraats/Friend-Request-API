@@ -4,7 +4,10 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    if (context.params.query.$limit !== undefined && context.params.query.$limit !== null && context.params.query.$limit > 49) {
+    //what even is this shit
+    if (context.params.query !== undefined && context.params.query !== null && 
+      context.params.query.$limit !== undefined && context.params.query.$limit !== null && 
+      context.params.query.$limit > 49) {
       context.params.query.$limit = 49
     }
     return context;
