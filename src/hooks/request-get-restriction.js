@@ -4,10 +4,13 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    const currUser = context.params.user.email
 
-    if (context.result.requestee !== currUser && context.result.requester !== currUser) {
-      throw new Error('User not allowed to view this request')
+    if (context.params.user !== undefined && context.params.user !== null) {
+      const currUser = "" + context.params.user._id
+
+      if (context.result.requestee !== currUser && context.result.requester !== currUser) {
+        throw new Error('User not allowed to view this request')
+      }
     }
 
     return context;

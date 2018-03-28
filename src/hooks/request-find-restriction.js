@@ -6,7 +6,7 @@ module.exports = function (options = {}) {
   return async context => {
 
     if (context.params.user !== undefined && context.params.user !== null) {
-      const currUser = context.params.user.email
+      const currUser = "" + context.params.user._id
       
       context.params.query.$or= [{
         requestee: currUser

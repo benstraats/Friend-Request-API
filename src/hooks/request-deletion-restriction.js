@@ -7,7 +7,7 @@ module.exports = function (options = {}) {
 
     if (context.params.user !== undefined && context.params.user !== null) {
       const id = context.id
-      const currUser = context.params.user.email
+      const currUser = "" + context.params.user._id
       if (id === null) {
         //Make sure params are safe here and we dont delete a good request
         context.params.query.$or= [{

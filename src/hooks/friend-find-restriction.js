@@ -7,7 +7,7 @@ module.exports = function (options = {}) {
 
     //Calls done from the outside
     if (context.params.user !== undefined && context.params.user !== null) {
-      const currUser = context.params.user.email
+      const currUser = "" + context.params.user._id
       
       context.params.query.$or= [{
         user1: currUser
