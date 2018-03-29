@@ -12,24 +12,51 @@ module.exports = function (options = {}) {
 
       const userID = context.params.query.userID
       
+      //else will just get all users current user is friends with
       if (userID !== undefined && userID !== null) {
-        //TODO: handle the case where the client asks for a specific set of users profiles
+
+        //else is nothing since we can just return current users profile
         if (userID !== currUser) {
-          await context.app.service('friends').find({
-            query: {
-              $or: [{
-                user1: userID,
-                user2: currUser
-              }, {
-                user1: currUser,
-                user2: userID
-              }]
-            }
-          }).then((data) => {
-            if (!data.data.length) {
-              throw new Error('Users are not friends.');
-            }
-          })
+
+          if (Object.prototype.toString(userID) === '[object array]') {
+
+            //Not sure if this works
+            await context.app.service('friends').find({
+              query: {
+                $or: [{
+                  user1: {$in: userID},
+                  user2: currUser
+                }, {
+                  user1: currUser,
+                  user2: {$in: userID},
+                }]
+              }
+            }).then((data) => {
+              if (data.data.length !== userID.length) {
+                throw new Error('Current user isn\'t friends with all specified users');
+              }
+            })
+
+          }
+
+          else {
+            await context.app.service('friends').find({
+              query: {
+                $or: [{
+                  user1: userID,
+                  user2: currUser
+                }, {
+                  user1: currUser,
+                  user2: userID
+                }]
+              }
+            }).then((data) => {
+              if (!data.data.length) {
+                throw new Error('Users are not friends.');
+              }
+            })
+          }
+
         }
       }
 
@@ -56,11 +83,11 @@ module.exports = function (options = {}) {
 
           for (let i=0; i<length; i++) {
             if (data.data[i].user1 !== currUser && !users.includes(data.data[i].user1)) {
-              users[userIter] = objectid(data.data[userIter].user1)
+              users[userIter] = data.data[userIter].user1
               userIter++
             }
             else if (data.data[i].user2 !== currUser && !users.includes(data.data[i].user2)) {
-              users[userIter] = objectid(data.data[userIter].user2)
+              users[userIter] = data.data[userIter].user2
               userIter++
             }
           }
