@@ -6,13 +6,9 @@ module.exports = function (options = {}) {
   return async context => {
     const currUser = "" + context.params.user._id
 
-    await context.service.find({
-      query: {
-        userID: currUser
-      }
-    }).then((data) => {
-      if (data.data.length) {
-        throw new Error('Profile for user has already been created')
+    context.service.get(context.id).then((data) => {
+      if (data.userID !== currUser) {
+        throw new Error('Not allowed to update other users profile')
       }
     })
 

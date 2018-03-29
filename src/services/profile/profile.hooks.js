@@ -7,15 +7,18 @@ const profileFindRestriction = require('../../hooks/profile-find-restriction');
 const profileGetRestriction = require('../../hooks/profile-get-restriction');
 const profileDeleteRestriction = require('../../hooks/profile-delete-restriction');
 const profileCreateValidation = require('../../hooks/profile-create-validation');
+const profileUpdateValidation = require('../../hooks/profile-update-validation');
+const profileProfileValidation = require('../../hooks/profile-profile-validation');
+const profilePatchValidation = require('../../hooks/profile-patch-validation');
 
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
     find: [profileFindRestriction()],
     get: [],
-    create: [createdAt(), profileCreateValidation()],
-    update: [updatedAt()],
-    patch: [updatedAt()],
+    create: [createdAt(), profileCreateValidation(), profileProfileValidation()],
+    update: [updatedAt(), profileUpdateValidation(), profileProfileValidation()],
+    patch: [updatedAt(), profileUpdateValidation(), profilePatchValidation()],
     remove: [profileDeleteRestriction()]
   },
 

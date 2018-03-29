@@ -4,17 +4,11 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    const currUser = "" + context.params.user._id
+    const row = context.params.query.row
+    const key = context.params.query.key
+    const value = context.params.query.value
 
-    await context.service.find({
-      query: {
-        userID: currUser
-      }
-    }).then((data) => {
-      if (data.data.length) {
-        throw new Error('Profile for user has already been created')
-      }
-    })
+    //TODO figure out how to get this working correctly
 
     return context;
   };
