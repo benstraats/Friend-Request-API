@@ -11,6 +11,7 @@ module.exports = function (options = {}) {
       const userID = context.params.query.userID
       
       if (userID !== undefined && userID !== null) {
+        //TODO: handle the case where the client asks for a specific set of users profiles
         if (userID !== currID) {
           await context.app.service('friends').find({
             query: {
