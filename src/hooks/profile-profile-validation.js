@@ -20,24 +20,24 @@ module.exports = function (options = {}) {
     */
     let curatedProfile = context.data.profile
     for (let i=0; i<context.data.profile.length; i++) {
-      if (profile[i].row !== i) {
+      if (context.data.profile[i].row !== i) {
         throw new Error('Rows are out of order');
       }
-      if (!profile[i].key) {
+      if (!context.data.profile[i].key) {
         throw new Error('Row must have a key');
       }
-      if (!profile[i].value) {
+      if (!context.data.profile[i].value) {
         throw new Error('Row must have a value');
       }
-      let rowSave = profile[i].row
-      let keySave = profile[i].key
-      let valueSave = profile[i].value
+      let rowSave = context.data.profile[i].row
+      let keySave = context.data.profile[i].key
+      let valueSave = context.data.profile[i].value
       curatedProfile[i] = {row:rowSave, key:keySave, value:valueSave}
     }
    
     context.data = {
       userID: currUser,
-      profile: curateProfile
+      profile: curatedProfile
     }
 
     return context;

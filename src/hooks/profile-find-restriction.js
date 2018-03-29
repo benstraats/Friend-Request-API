@@ -1,6 +1,8 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
 
+var objectid = require('objectid')
+
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
@@ -12,7 +14,7 @@ module.exports = function (options = {}) {
       
       if (userID !== undefined && userID !== null) {
         //TODO: handle the case where the client asks for a specific set of users profiles
-        if (userID !== currID) {
+        if (userID !== currUser) {
           await context.app.service('friends').find({
             query: {
               $or: [{
@@ -54,11 +56,11 @@ module.exports = function (options = {}) {
 
           for (let i=0; i<length; i++) {
             if (data.data[i].user1 !== currUser && !users.includes(data.data[i].user1)) {
-              users[userIter] = objectid(users[userIter].user1)
+              users[userIter] = objectid(data.data[userIter].user1)
               userIter++
             }
             else if (data.data[i].user2 !== currUser && !users.includes(data.data[i].user2)) {
-              users[userIter] = objectid(users[userIter].user)
+              users[userIter] = objectid(data.data[userIter].user2)
               userIter++
             }
           }
