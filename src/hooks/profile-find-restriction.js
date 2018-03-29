@@ -38,13 +38,13 @@ module.exports = function (options = {}) {
         //get all profiles of the friends of the user
         await context.app.service('friends').find({
           query: {
+            $limit: limit,
+            $skip: skip,
             $or: [{
               user1: currUser
             }, {
               user2: currUser
-            }],
-            $limit: limit,
-            $skip = skip
+            }]
           }
         }).then((data) => {
           //go over all returned users

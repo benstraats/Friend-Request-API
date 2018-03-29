@@ -3,9 +3,9 @@
 
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
-  const currUser = "" + context.params.user._id
-
   return async context => {
+    const currUser = "" + context.params.user._id
+
     /*
     Must be in this format:
     userID: someObjectID,
