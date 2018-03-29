@@ -24,7 +24,7 @@ module.exports = function (options = {}) {
               }]
             }
           }).then((data) => {
-            if (data.data.length) {
+            if (!data.data.length) {
               throw new Error('Users are not friends.');
             }
           })
