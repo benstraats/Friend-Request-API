@@ -16,9 +16,9 @@ module.exports = {
     all: [ authenticate('jwt') ],
     find: [profileFindRestriction()],
     get: [],
-    create: [createdAt(), profileCreateValidation(), profileProfileValidation()],
-    update: [updatedAt(), profileUpdateValidation(), profileProfileValidation()],
-    patch: [updatedAt(), profileUpdateValidation(), profilePatchValidation()],
+    create: [ profileCreateValidation(), profileProfileValidation(), createdAt()],
+    update: [profileUpdateValidation(), profileProfileValidation(), updatedAt()],
+    patch: [profileUpdateValidation(), profilePatchValidation(), updatedAt()],
     remove: [profileDeleteRestriction()]
   },
 
