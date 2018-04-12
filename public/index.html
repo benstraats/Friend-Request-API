@@ -6,7 +6,6 @@
     <style>
       * {
         margin: 0;
-        padding: 0;
         box-sizing: border-box;
       }
 
@@ -86,243 +85,55 @@
 
 
 
-      <h3>Friend request API Documentation:</h3><br>
-      <table>
-        <tr>
-          <th>Section</th>
-          <th>Path</th>
-          <th>REST Call</th>
-          <th>Feather Call</th>
-          <th>Description</th>
-          <th>Returns</th>
-          <th>Authentication</th>
-        </tr>
-        <tr>
-          <td>Users</td>
-          <td>./users</td>
-          <td>GET</td>
-          <td>find</td>
-          <td>Searches the user database</td>
-          <td>Returns a list of user emails and names</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Users</td>
-          <td>./users/x</td>
-          <td>GET</td>
-          <td>get</td>
-          <td>Gets the info on a specific user</td>
-          <td>Returns Error, this action isn't allowed</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Users</td>
-          <td>./users</td>
-          <td>POST</td>
-          <td>create</td>
-          <td>Creates a new user specific to the payload</td>
-          <td>Returns response 200 upon success</td>
-          <td>No</td>
-        </tr>
-        <tr>
-          <td>Users</td>
-          <td>./users/x</td>
-          <td>PUT</td>
-          <td>update</td>
-          <td>Updates a given user</td>
-          <td>Returns Error, this action isn't allowed</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Users</td>
-          <td>./users/x</td>
-          <td>PATCH</td>
-          <td>patch</td>
-          <td>Fixes a field for a specific user</td>
-          <td>Returns Error, this action isn't allowed</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Users</td>
-          <td>./users/x</td>
-          <td>DELETE</td>
-          <td>delete</td>
-          <td>Deletes a specific user</td>
-          <td>Returns Error, this action isn't allowed</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Authentication</td>
-          <td>./authentication</td>
-          <td>POST</td>
-          <td>create</td>
-          <td>Creates an accessToken for given user info</td>
-          <td>Returns a hashed accessToken</td>
-          <td>No</td>
-        </tr>
-        <tr>
-          <td>Friends</td>
-          <td>./friends</td>
-          <td>GET</td>
-          <td>find</td>
-          <td>Gets current users list of friends</td>
-          <td>A list of users emails and names</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Friends</td>
-          <td>./friends/x</td>
-          <td>GET</td>
-          <td>get</td>
-          <td>Gets if current user and target are friends</td>
-          <td>Returns true if they are.</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Friends</td>
-          <td>./friends</td>
-          <td>POST</td>
-          <td>create</td>
-          <td>Creates a friend pair between current user and target (only if valid request exists)</td>
-          <td>The validated friend pair</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Friends</td>
-          <td>./friends/x</td>
-          <td>PUT</td>
-          <td>update</td>
-          <td>Updates the friend pair.</td>
-          <td>Returns Error, this action isn't allowed</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Friends</td>
-          <td>./friends/x</td>
-          <td>PATCH</td>
-          <td>patch</td>
-          <td>Changes an attribute for the friend pair</td>
-          <td>Returns Error, this action isn't allowed</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Friends</td>
-          <td>./friends/x</td>
-          <td>DELETE</td>
-          <td>delete</td>
-          <td>Deletes the friend pair</td>
-          <td>Returns Error, this action isn't allowed</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Requests</td>
-          <td>./requests</td>
-          <td>GET</td>
-          <td>find</td>
-          <td>Gets all the requests current user is apart of</td>
-          <td>Returns a list of requester and requestee pairs for current user</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Requests</td>
-          <td>./requests/x</td>
-          <td>GET</td>
-          <td>get</td>
-          <td>Gets the status of current user and target request</td>
-          <td>Returns no status, friends, curr user is requestee or requester</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Requests</td>
-          <td>./requests</td>
-          <td>POST</td>
-          <td>create</td>
-          <td>Creates a request to the target if not already friends or requested</td>
-          <td>Returns the new request</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Requests</td>
-          <td>./requests/x</td>
-          <td>PUT</td>
-          <td>update</td>
-          <td>Updates the target request</td>
-          <td>Returns Error, this action isn't allowed</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Requests</td>
-          <td>./requests/x</td>
-          <td>PATCH</td>
-          <td>patch</td>
-          <td>Fixes an attribute for the target request</td>
-          <td>Returns Error, this action isn't allowed</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Requests</td>
-          <td>./requests/x</td>
-          <td>DELETE</td>
-          <td>delete</td>
-          <td>Deletes the target request</td>
-          <td>Returns Error, this action isn't allowed</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Profile</td>
-          <td>./profile</td>
-          <td>GET</td>
-          <td>find</td>
-          <td>Gets all the profiles the user is friends with</td>
-          <td>Returns a list of info on all profiles</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Profile</td>
-          <td>./profile/x</td>
-          <td>GET</td>
-          <td>get</td>
-          <td>Gets a specific users profile</td>
-          <td>Returns just the users profile</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Profile</td>
-          <td>./profile</td>
-          <td>POST</td>
-          <td>create</td>
-          <td>Creates a profile for the current user</td>
-          <td>Returns the profile</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Profile</td>
-          <td>./profile/x</td>
-          <td>PUT</td>
-          <td>update</td>
-          <td>Updates the current users profile</td>
-          <td>Returns the updated profile</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Profile</td>
-          <td>./profile/x</td>
-          <td>PATCH</td>
-          <td>patch</td>
-          <td>Updates a part of the current users profile</td>
-          <td>Returns the updated part of the users profile</td>
-          <td>Yes</td>
-        </tr>
-        <tr>
-          <td>Profile</td>
-          <td>./profile/x</td>
-          <td>DELETE</td>
-          <td>delete</td>
-          <td>Deletes the users profile</td>
-          <td>Returns Error, this action isn't allowed</td>
-          <td>Yes</td>
-        </tr>
-      </table>
+      <h3>TODOs:</h3><br>
+      Android App
+      <ol type="1">
+        <li>Create and apply wireframe</li>
+        <li>Refactor lists - Use helper class
+          <ul>
+            <li>Find Friends</li>
+            <li>Requests</li>
+            <li>My Friends</li>
+          </ul>
+        </li>
+        <li>Ability to see/delete sent requests</li>
+        <li>Finding friends should show current relationship to user</li>
+        <li>User info saved on login and ability to log out manually</li>
+        <li>Better error message handling</li>
+        <li>General bug fixes
+          <ul>
+            <li>Saving profile when empty or empty row</li>
+            <li>Slow profile editing when over 10 rows</li>
+            <li>Hide public checkbox option from profile rows</li>
+            <li>Button restrictions during loading</li>
+            <li>On the fly updates for adding and removing users from lists</li>
+          </ul>
+        </li>
+      </ol> <br>
+      API
+      <ol type="1">
+        <li>Double check all security</li>
+        <li>Handle random errors/bugs (profile has a few)</li>
+        <li>Double check all functionality is working as expected</li>
+        <li>Add custom ./search path
+          <ul>
+            <li>Ability to search via specific user id, list of user ids, or search keyword</li>
+            <li>Returns found users name, email, id, profile id, and relationship (none, requested, requestee, or friends)</li>
+          </ul>
+        </li>
+      </ol> <br>
+      iOS
+      <ol type="1">
+        <li>Start creating it</li>
+      </ol> <br>
+      Web Front End
+      <ol type="1">
+        <li>Start creating it</li>
+      </ol> <br>
+      Machine Learning
+      <ol type="1">
+        <li>Start creating it</li>
+      </ol>
     </main>
   </body>
 </html>
