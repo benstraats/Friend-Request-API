@@ -17,7 +17,11 @@ module.exports = function (options = {}) {
           user2: currUser
         }]
       } else {
-        await context.service.get(id)
+        await context.service.get(id).then((data) => {
+          if (currUser !== data.user1 && currUser !== data.user2) {
+            throw new Error("Not allowed to delete friendship")
+          }
+        });
       }
     }
 

@@ -18,7 +18,11 @@ module.exports = function (options = {}) {
       }
       else{
         //Will error if we dont have access
-        await context.service.get(id)
+        await context.service.get(id).then((data) => {
+          if (currUser !== data.requestee && currUser !== data.requester) {
+            throw new Error("Not allowed to delete request")
+          }
+        });
       }
     }
 
