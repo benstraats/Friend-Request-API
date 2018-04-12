@@ -7,9 +7,13 @@
 
 This repository is the API for the Friend Request project. An open source application for connecting users through their various social media platforms.
 
+
 The Android App repository can be found [here](https://github.com/benstraats/Friend-Request-Android)
+
 The iOS App repository can be found [here](https://github.com/benstraats/Friend-Request-iOS)
+
 The Web Front End repository can be found [here](https://github.com/benstraats/Friend-Request-Website)
+
 The Machine Learning repository for Friend Request can be found [here](https://github.com/benstraats/Friend-Request-Machine-Learning)
 
 ## Getting Started
