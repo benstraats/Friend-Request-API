@@ -54,4 +54,10 @@ app.use(express.errorHandler({ logger }));
 
 app.hooks(appHooks);
 
+app.use('/search', (req, res) => {
+    res.json({
+      message: 'Hello world from Express middleware'
+    });
+  });
+
 module.exports = app;
