@@ -7,7 +7,7 @@ module.exports = {
     find: [],
     get: [],
     create: [notAllowed()],
-    update: notAllowed()[],
+    update: [notAllowed()],
     patch: [notAllowed()],
     remove: [notAllowed()]
   },
