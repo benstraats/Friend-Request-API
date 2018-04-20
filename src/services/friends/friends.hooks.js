@@ -12,7 +12,7 @@ const setLimitMax = require('../../hooks/set-limit-max');
 
 module.exports = {
   before: {
-    all: [authenticate('jwt'), setLimitMax()],
+    all: [authenticate('jwt')],
     find: [friendFindRestriction()],
     get: [],
     create: [friendCreationValidation(), createdAt()],
@@ -23,8 +23,8 @@ module.exports = {
 
   after: {
     all: [],
-    find: [attachUserInfo()],
-    get: [friendGetRestriction(), attachUserInfo()],
+    find: [],
+    get: [friendGetRestriction()],
     create: [],
     update: [],
     patch: [],
