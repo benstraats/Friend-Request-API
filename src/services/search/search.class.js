@@ -56,8 +56,7 @@ class Service {
               user2: currUser
             }
           ],
-          $limit: limit,
-          $skip: skip
+          $limit: limit
         }
       }).then((friendData) => {
         searchData.push({'Friends': friendData})
@@ -75,8 +74,7 @@ class Service {
                 requestee: currUser
               }
             ],
-            $limit: limit,
-            $skip: skip
+            $limit: limit
           }
         }).then((requestData) => {
           searchData.push({'Requests': requestData})

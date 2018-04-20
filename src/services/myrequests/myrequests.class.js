@@ -16,27 +16,20 @@ class Service {
     let limit = params.query.$limit;
     let skip = params.query.$skip;
 
-    let friendData = [];
+    let requestData = [];
 
-    return await app.service('friends').find({
+    return await app.service('requests').find({
       query: {
-        $or: [
-          {user1: currUser},
-          {user2: currUser}
-        ],
+        requestee: currUser,
         $limit: limit,
         $skip: skip
       }
     }).then((data) => {
-      friendData.push({'friends': data})
+      requestData.push({'requests': data})
 
       let ids = [];
       for (let i=0; i<data.data.length; i++) {
-        if (('' + data.data[i].user1) === currUser) {
-          ids.push(objectid(data.data[i].user2))
-        } else {
-          ids.push(objectid(data.data[i].user1))
-        }
+        ids.push(objectid(data.data[i].requester))
       }
 
       return app.service('users').find({
@@ -46,9 +39,9 @@ class Service {
           $select: ['email', 'name']
         }
       }).then((userData) => {
-        friendData.push({'Users': userData})
+        requestData.push({'Users': userData})
 
-        return {'FriendData': friendData}
+        return {'RequestData': requestData}
       })
     })
   }
