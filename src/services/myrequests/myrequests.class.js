@@ -16,7 +16,7 @@ class Service {
     let limit = params.query.$limit;
     let skip = params.query.$skip;
 
-    let requestData = [];
+    let requestData = {};
 
     return await app.service('requests').find({
       query: {
@@ -25,7 +25,7 @@ class Service {
         $skip: skip
       }
     }).then((data) => {
-      requestData.push({'requests': data})
+      requestData.requests = data
 
       let ids = [];
       for (let i=0; i<data.data.length; i++) {
@@ -39,9 +39,9 @@ class Service {
           $select: ['email', 'name']
         }
       }).then((userData) => {
-        requestData.push({'Users': userData})
+        requestData.users = userData
 
-        return {'RequestData': requestData}
+        return requestData
       })
     })
   }
