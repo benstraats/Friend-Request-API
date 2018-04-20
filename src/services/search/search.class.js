@@ -35,14 +35,14 @@ class Service {
       }
     }).then((data) => {
 
-      let searchData = [];
+      let searchData = {};
 
       let ids = [];
       for (let i=0; i<data.data.length; i++) {
         ids.push('' + data.data[i]._id);
       }
 
-      searchData.push({'Users': data});
+      searchData.users = data
 
       return app.service('friends').find({
         query: {
@@ -59,7 +59,7 @@ class Service {
           $limit: limit
         }
       }).then((friendData) => {
-        searchData.push({'Friends': friendData})
+        searchData.friends = friendData
 
         //TODO: move this outside so it runs so it runs async with friends
         return app.service('requests').find({
@@ -77,9 +77,9 @@ class Service {
             $limit: limit
           }
         }).then((requestData) => {
-          searchData.push({'Requests': requestData})
+          searchData.requests = requestData
   
-          return { searchData }
+          return searchData
         })
       })
     })
