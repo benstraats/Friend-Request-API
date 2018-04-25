@@ -15,7 +15,7 @@ const userDeletionRestriction = require('../../hooks/user-deletion-restriction')
 module.exports = {
   before: {
     all: [],
-    find: [ authenticate('jwt'), userSearch() ],
+    find: [ authenticate('jwt') ],
     get: [ authenticate('jwt') ],
     create: [
       userDoesntExist(),
