@@ -30,7 +30,7 @@ module.exports = {
       updatedAt()
     ],
     patch: [hashPassword(), authenticate('jwt'), notAllowed(), updatedAt()],
-    remove: [authenticate('jwt'), userDeletionRestriction()]
+    remove: [authenticate('jwt'), notAllowed(), userDeletionRestriction()]
   },
 
   after: {
