@@ -14,7 +14,7 @@ const profilePatchValidation = require('../../hooks/profile-patch-validation');
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
-    find: [notAllowed(), profileFindRestriction()],
+    find: [profileFindRestriction()],
     get: [],
     create: [ profileCreateValidation(), profileProfileValidation(), createdAt()],
     update: [profileUpdateValidation(), profileProfileValidation(), updatedAt()],
