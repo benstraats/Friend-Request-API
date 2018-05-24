@@ -19,6 +19,11 @@ module.exports = function (options = {}) {
     ]
     */
     let curatedProfile = context.data.profile
+
+    if (context.data.profile.length > 50) {
+      throw new Error('Profile has more than 50 rows')
+    }
+
     for (let i=0; i<context.data.profile.length; i++) {
       if (context.data.profile[i].row !== i) {
         throw new Error('Rows are out of order');
@@ -32,6 +37,15 @@ module.exports = function (options = {}) {
       let rowSave = context.data.profile[i].row
       let keySave = context.data.profile[i].key
       let valueSave = context.data.profile[i].value
+
+      if (keySave.length > 200) {
+        throw new Error('Rows key is longer than 200 characters')
+      }
+
+      if (valueSave.length > 200) {
+        throw new Error('Rows value is longer than 200 characters')
+      }
+
       curatedProfile[i] = {row:rowSave, key:keySave, value:valueSave}
     }
    
