@@ -10,11 +10,12 @@ body {
 body {
   background-color: #000;
   background-image: url("../images/background.jpg");
-  background-size: cover;
   background-position: center center;
   background-attachment: fixed;
   font-family: "Segoe UI", "Lucida Grande", "Lucida Sans", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
-  color: #aaa; }
+  color: #aaa;
+  background-repeat: no-repeat;
+  background-size: auto; }
 
 a {
   text-decoration: none;
