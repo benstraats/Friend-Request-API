@@ -18,9 +18,6 @@ module.exports = function (options = {}) {
       throw new Error("A user much have a password");
     }
 
-    email = email.trim();
-    name = name.trim();
-    password = password.trim();
 
     //check all are valid strings with length and no numbers in name, etc
     if (email.length < 3) {
@@ -37,16 +34,32 @@ module.exports = function (options = {}) {
       throw new Error('Password must be less than 50 characters')
     }
 
-    var nameRegex = RegExp("/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u")
-    var usernameRegex = RegExp('/^([a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð_-])*$/')
+    var nameRegex = RegExp(/^[A-Za-zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/)
+    var nameStartsWithWhiteSpaceRegex = RegExp("^ ")
+    var nameEndsWithWhiteSpaceRegex = RegExp(" $")
+    var nameContainsDoubleWithWhiteSpaceRegex = RegExp("  ")
+    var usernameRegex = RegExp(/^[A-Za-z0-9àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð_-]+$/)
 
     if (!(nameRegex.test(name))) {
       throw new Error('Name contains invalid characters')
     }
 
-    if (!(usernameRegex.test(email))) {
-      throw new Error('Email contains invalid characters')
+    if (nameStartsWithWhiteSpaceRegex.test(name)) {
+      throw new Error('Name starts with a space')
     }
+
+    if (nameEndsWithWhiteSpaceRegex.test(name)) {
+      throw new Error('Name ends with a space')
+    }
+
+    if (nameContainsDoubleWithWhiteSpaceRegex.test(name)) {
+      throw new Error('Name has a double space')
+    }
+
+    if (!(usernameRegex.test(email))) {
+      throw new Error('Username/Email contains invalid characters')
+    }
+    
 
     //make sure no extra data is inserted
     context.data = {
