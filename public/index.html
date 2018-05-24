@@ -1,129 +1,40 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <title>Friend Request</title>
-    <meta name="description" content="Homepage for the official Friend Request project. Created by Ben Straatsma and Ori Wiegner">
+	<meta name="description" content="Homepage for the official Friend Request project. Created by Ben Straatsma and Ori Wiegner">
     <meta name="keywords" content="Social Media,Friend Request,Ben Straatsma,Ori Wiegner,Open Source">
-    <style>
-      * {
-        margin: 0;
-        box-sizing: border-box;
-      }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="mainContainer">
+        <div id="mainContentBlock">
+            <div id="mainContent">
+                
+                <div id="avatarImageBlock" style="background-image: url('images/avatar.png');">
+                </div>
+                
+                <div id="introBox">
+                    <h1>Friend Request</h1>
+                    <h2></h2>
+                </div>
 
-      html, body {
-        font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
-        font-weight: 400;
-        font-size: 16px;
-        color: #333;
-      }
-
-      .center-text {
-        text-align: center;
-      }
-
-
-      h2 {
-        font-size: 4em;
-        font-weight: 100;
-      }
-
-      table {
-          border-collapse: collapse;
-      }      
-
-      th, td {
-        padding: 5px;
-        border-bottom: 1px solid #ddd;
-      }
-
-      th {
-        text-align: left;
-      }
-
-      tr:hover {background-color: #f5f5f5;}
-    </style>
-  </head>
-  <body>
-    <main class="container"><br><br>
-      <h2 class="center-text">Welcome to Friend Request</h2><br><br><br><br>
-      <h3>Downloads</h3>
-      <a href="./Friend-Request.apk">Android App - Version 0.13</a>
-      <!-- Commenting out since table is unnecessary at this stage of early development -->
-      <!--
-      <table>
-        <tr>
-          <th>Platform</th>
-          <th>Master</th>
-          <th>Develop</th>
-        </tr>
-        <tr>
-          <td>Android App</td>
-          <td>Unreleased</td>
-          <td><a href="./Friend-Request.apk">Version 0.2</a></td>
-        </tr>
-        <tr>
-          <td>iOS App</td>
-          <td>Coming Soon</td>
-          <td>Coming Soon</td>
-        </tr>
-        <tr>
-          <td>Website Front End</td>
-          <td>Coming Soon</td>
-          <td>Coming Soon</td>
-        </tr>
-      </table>
-      -->
-      <br><br><br><br><br>
-
-
-
-      <h3>Source Code:</h3>
-      <a href="https://github.com/benstraats/FriendRequestServer">API</a><br>
-      <a href="https://github.com/benstraats/NewFriendRequest">Android App</a><br>
-      <a href="https://github.com/benstraats/Friend-Request-iOS">iOS App</a><br>
-      <a href="https://github.com/benstraats/Friend-Request-Website">Web Front End</a><br>
-      <a href="https://github.com/benstraats/Friend-Request-Machine-Learning">Machine Learning</a><br><br><br><br><br>
-
-
-
-      <h3>TODOs:</h3><br>
-      Android App
-      <ol type="1">
-        <li>Refactor
-          <ul>
-            <li>Profile</li>
-            <li>Landing</li>
-          </ul>
-        </li>
-        <li>User info saved on login and ability to log out manually</li>
-        <li>Better error message handling</li>
-        <li>General bug fixes
-          <ul>
-            <li>Saving profile when empty or empty row</li>
-            <li>Slow profile editing when over 10 rows</li>
-            <li>Hide public checkbox option from profile rows</li>
-            <li>Button restrictions during loading</li>
-            <li>Deleting friend off search doesn't update list</li>
-          </ul>
-        </li>
-      </ol> <br>
-      API
-      <ol type="1">
-        <li>Double check all security</li>
-        <li>Handle random errors/bugs (profile has a few)</li>
-        <li>Double check all functionality is working as expected</li>
-      </ol> <br>
-      iOS
-      <ol type="1">
-        <li>Start creating it</li>
-      </ol> <br>
-      Web Front End
-      <ol type="1">
-        <li>Start creating it</li>
-      </ol> <br>
-      Machine Learning
-      <ol type="1">
-        <li>Start creating it</li>
-      </ol>
-    </main>
-  </body>
+                <div id="fullBioBox">
+                    <p>This app is an aggregator of you and your friends social media accounts, allowing you to connect with eachother easily over the many platforms you use.</p>
+					<p>Download the <a href="./Friend-Request.apk">Android App - Version 0.14</a></p>
+					<p>iOS App will be released for download soon.</p>
+					<br>
+					<p>GitHub links:</p>
+					<p><a href="https://github.com/benstraats/Friend-Request-API">API</a></p>
+					<p><a href="https://github.com/benstraats/Friend-Request-Android">Android App</a></p>
+					<p><a href="https://github.com/benstraats/Friend-Request-React-Native">iOS/React Native</a></p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
 </html>
