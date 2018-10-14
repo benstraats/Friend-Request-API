@@ -1,4 +1,63 @@
+/* full background */
 body {
     background-image: url("../images/background.jpg");
-    max-width: 25%;
+    height: 100%;
+    background-position: calc(50% + 50%) 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1,p {
+  font-family: sans-serif;
+}
+
+/* the div where that contains all the info and logo*/
+#opaiquebox{
+  width: 33%;
+  height: 100vh;
+  padding-top: 1%;
+  margin-left: -1%;
+  margin-top: -2%;
+  height: 110%;
+  opacity: 0.5;
+  background-color: #ffffff;
+  border-bottom: solid;
+  border-width: 10px;
+  border-color: #ffffff;
+}
+
+/* logo resizing and centering it */
+#logo{
+  width:57%;
+  height:57%;
+  padding-left: 18%
+}
+
+/* info offset */
+#info{
+  padding-left: 3%;
+}
+
+.Icon1{
+  padding-left: 1%;
+  width:37%;
+  height:27%;
+}
+
+.Icon2{
+
+  width:40%;
+  height:27%;
+}
+
+a.links:hover{
+  color: rgba(26, 26, 26,1);
+  text-decoration: none;
+}
+
+.links{
+  display: inline;
+  font-weight: bold;
+  color: rgba(0,0,0,1);
+  text-decoration: none;
 }
