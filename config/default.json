@@ -1,13 +1,13 @@
 {
   "host": "localhost",
-  "port": 3030,
+  "port": 443,
   "public": "../public/",
   "paginate": {
     "default": 10,
     "max": 50
   },
   "authentication": {
-    "secret": "0195a5fb91213b562aa3eadd106d87ffed86bea987c657c0a76a5186a778cc94a5687f93146a214ace83950bfb2916519f5913581f67e7d74de886fef4f6a72f412724037a425180aa302c6bf83b99d50e1c9edf8746041956cb5f9fc9f0ae64f0d93997215f497215c56f74d099f78e9b9a3fd4e621eb609070e4025073758e1dac271e3fc08845781dd1f9786ceafcfc09a672f42872aa4fa970fafb9326c481052e112cd2f5c8759bc7b41487eda2b31cba661bf85a8e60e00ea8e6e91a38c8400f7be264a9df4e290cadac0e4b695a74af1f00a4f9bdc513ad8a7a3766570462c4b839a6a88728c8be0d35ae5261c269795d89a5b608c381923c2cd0ae5f",
+    "secret": "Private DB Key Goes Here",
     "strategies": [
       "jwt",
       "local"
@@ -18,7 +18,7 @@
       "header": {
         "typ": "access"
       },
-      "audience": "https://yourdomain.com",
+      "audience": "https://friendrequest.ca",
       "subject": "anonymous",
       "issuer": "feathers",
       "algorithm": "HS256",

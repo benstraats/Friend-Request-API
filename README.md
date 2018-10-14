@@ -1,5 +1,5 @@
 # Friend Request API
-[Official Project Site](http://friendrequest.ca)
+[Official Project Site](https://friendrequest.ca)
 
 > 
 
