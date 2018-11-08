@@ -11,7 +11,7 @@ module.exports = function (options = {}) {
 
     //check it contains email, name, and password
     if(!context.data.email) {
-      throw new Error('A user must have an email/username');
+      throw new Error('A user must have an username');
     } else if(!context.data.name) {
       throw new Error('A user must have a name');
     } else if(!context.data.password) {
@@ -21,9 +21,9 @@ module.exports = function (options = {}) {
 
     //check all are valid strings with length and no numbers in name, etc
     if (email.length < 3) {
-      throw new Error('Email must have atleast 3 characters');
+      throw new Error('Username must have atleast 3 characters');
     } else if(email.length > 50) {
-      throw new Error('Email must be less than 50 characters')
+      throw new Error('Username must be less than 50 characters')
     } else if(name.length < 3) {
       throw new Error('Name must have atleast 3 cahracters');
     } else if(name.length > 100) {
