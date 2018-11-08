@@ -12,7 +12,7 @@ module.exports = function (options = {}) {
       }
     }).then((data) => {
       if (data.data.length) {
-        throw new Error('This email address is already in use by somebody else.');
+        throw new Error('This username address is already in use by somebody else.');
       }
     });
 
