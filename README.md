@@ -1,10 +1,20 @@
-# friend-request
+# Friend Request API
+[Official Project Site](https://friendrequest.ca)
 
 > 
 
 ## About
 
-This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
+This repository is the API for the Friend Request project. An open source application for connecting users through their various social media platforms.
+
+
+The Android App repository can be found [here](https://github.com/benstraats/Friend-Request-Android)
+
+The iOS App repository can be found [here](https://github.com/benstraats/Friend-Request-iOS)
+
+The Web Front End repository can be found [here](https://github.com/benstraats/Friend-Request-Website)
+
+The Machine Learning repository for Friend Request can be found [here](https://github.com/benstraats/Friend-Request-Machine-Learning)
 
 ## Getting Started
 
@@ -23,32 +33,16 @@ Getting up and running is as easy as 1, 2, 3.
     npm start
     ```
 
+4. You will then have to open your server up on the public port and modify each of the other client applications to point towards your API
+
 ## Testing
 
 Simply run `npm test` and all your tests in the `test/` directory will be run.
 
-## Scaffolding
-
-Feathers has a powerful command line interface. Here are a few things it can do:
-
-```
-$ npm install -g @feathersjs/cli          # Install Feathers CLI
-
-$ feathers generate service               # Generate a new Service
-$ feathers generate hook                  # Generate a new Hook
-$ feathers generate model                 # Generate a new Model
-$ feathers help                           # Show all commands
-```
-
-## Help
-
-For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
-
 ## Changelog
 
-__0.1.0__
-
-- Initial release
+__1.0.0__
+- To be released soon
 
 ## License
 
