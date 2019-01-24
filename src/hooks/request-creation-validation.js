@@ -1,5 +1,6 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
+const { FeathersError } = require('@feathersjs/errors');
 
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
@@ -8,14 +9,14 @@ module.exports = function (options = {}) {
 
     //Check request has a requestee
     if(!context.data.requesteeID) {
-      throw new Error("A request must have a requestee");
+      throw new FeathersError('A request must have a requestee', 'Bad-Request', 400);
     }
 
     const requestedUser = context.data.requesteeID.trim();
 
     //Check not requesting themselves
     if (currUser === requestedUser) {
-      throw new Error("Can\'t request themself.")
+      throw new FeathersError('Can\'t request themself.', 'Not-Allowed', 403);
     }
 
     //Check target is valid
@@ -34,7 +35,7 @@ module.exports = function (options = {}) {
       }
     }).then((data) => {
       if (data.data.length) {
-        throw new Error('Users are already friends.');
+        throw new FeathersError('Users are already friends.', 'Not-Allowed', 403);
       }
     })
 
@@ -50,7 +51,7 @@ module.exports = function (options = {}) {
       }
     }).then((data) => {
       if (data.data.length) {
-        throw new Error('There is already a request between users');
+        throw new FeathersError('There is already a request between users', 'Not-Allowed', 403);
       }
     })
 

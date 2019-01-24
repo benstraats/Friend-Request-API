@@ -1,5 +1,6 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
+const { FeathersError } = require('@feathersjs/errors');
 
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
@@ -8,11 +9,11 @@ module.exports = function (options = {}) {
 
     await context.service.find({
       query: {
-        email: userEmail
+        email: {$regex: userEmail, '$options' : 'i'}
       }
     }).then((data) => {
       if (data.data.length) {
-        throw new Error('This username is already in use by somebody else.');
+        throw new FeathersError('This username is already in use by somebody else.', 'Not-Allowed', 403);
       }
     });
 

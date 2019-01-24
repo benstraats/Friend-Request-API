@@ -7,6 +7,7 @@ const friendCreationValidation = require('../../hooks/friend-creation-validation
 const friendGetRestriction = require('../../hooks/friend-get-restriction');
 const friendDeletionRestriction = require('../../hooks/friend-deletion-restriction');
 const friendFindRestriction = require('../../hooks/friend-find-restriction');
+const friendNotification = require('../../hooks/friend-notification');
 const attachUserInfo = require('../../hooks/attach-user-info');
 const setLimitMax = require('../../hooks/set-limit-max');
 
@@ -15,7 +16,7 @@ module.exports = {
     all: [authenticate('jwt')],
     find: [friendFindRestriction()],
     get: [],
-    create: [friendCreationValidation(), createdAt()],
+    create: [friendCreationValidation(), createdAt(), friendNotification()],
     update: [notAllowed(), updatedAt()],
     patch: [notAllowed(), updatedAt()],
     remove: [friendDeletionRestriction()]

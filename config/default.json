@@ -30,5 +30,6 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb://localhost:27017/friend_request"
+  "mongodb": "mongodb://localhost:27017/friend_request",
+  "pushNotificationAuthorization": "key=YOUR-FIREBASE-KEY-GOES-HERE"
 }

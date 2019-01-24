@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+const sendNotification = require('../../send-notification');
+
 class Service {
   constructor (options) {
     this.options = options || {};
