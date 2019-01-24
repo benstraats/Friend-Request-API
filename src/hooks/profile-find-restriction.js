@@ -1,6 +1,6 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
-
+const { FeathersError } = require('@feathersjs/errors');
 var objectid = require('objectid')
 
 // eslint-disable-next-line no-unused-vars
@@ -33,7 +33,7 @@ module.exports = function (options = {}) {
               }
             }).then((data) => {
               if (data.data.length !== userID.length) {
-                throw new Error('Current user isn\'t friends with all specified users');
+                throw new FeathersError('Current user isn\'t friends with all specified users', 'Not-Allowed', 403);
               }
             })
 
@@ -52,7 +52,7 @@ module.exports = function (options = {}) {
               }
             }).then((data) => {
               if (!data.data.length) {
-                throw new Error('Users are not friends.');
+                throw new FeathersError('Users are not friends.', 'Not-Allowed', 403);
               }
             })
           }

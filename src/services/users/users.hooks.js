@@ -6,16 +6,16 @@ const {
 
 const notAllowed = require('../../hooks/not-allowed');
 const userDoesntExist = require('../../hooks/user-doesnt-exist');
-const userSearch = require('../../hooks/user-search');
 const createdAt = require('../../hooks/created-at');
 const updatedAt = require('../../hooks/updated-at');
+const userFindCaseFix = require('../../hooks/user-find-case-fix');
 const userCreationValidation = require('../../hooks/user-creation-validation');
 const userDeletionRestriction = require('../../hooks/user-deletion-restriction');
 
 module.exports = {
   before: {
     all: [],
-    find: [ authenticate('jwt') ],
+    find: [ authenticate('jwt'), userFindCaseFix() ],
     get: [ authenticate('jwt') ],
     create: [
       userDoesntExist(),

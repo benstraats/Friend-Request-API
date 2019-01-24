@@ -1,5 +1,6 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
+const { FeathersError } = require('@feathersjs/errors');
 
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
@@ -9,7 +10,7 @@ module.exports = function (options = {}) {
 
     await context.app.service('requests').get(requestID).then((data) => {
       if (currUser !== data.requestee) {
-        throw new Error("Not a valid request to fulfill")
+        throw new FeathersError('Not a valid request to fulfill', 'Invalid-Request', 400);
       }
 
       const otherUser = data.requester

@@ -1,5 +1,6 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
+const { FeathersError } = require('@feathersjs/errors');
 
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
@@ -7,12 +8,12 @@ module.exports = function (options = {}) {
     const currUser = context.params.user.email
 
     if (context.id === undefined || context.id == null) {
-      throw new Error('Can\'t delete mass users');
+      throw new FeathersError('Can\'t delete mass users', 'Not-Allowed', 403);
     }
 
     await context.service.get(context.id).then((data) => {
       if (data.email !== currUser) {
-        throw new Error('You don\'t have access to delete this user')
+        throw new FeathersError('You don\'t have access to delete this user', 'Not-Allowed', 403);
       }
     })
 
