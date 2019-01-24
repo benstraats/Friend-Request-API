@@ -9,7 +9,7 @@ module.exports = function (options = {}) {
 
     await context.service.find({
       query: {
-        email: {$regex: userEmail, '$options' : 'i'}
+        email: userEmail
       }
     }).then((data) => {
       if (data.data.length) {
