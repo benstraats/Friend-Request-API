@@ -19,7 +19,7 @@ module.exports = function (options = {}) {
       })
 
       for (let i=0; i<otherUserTokens.data.length; i++) {
-          sendNotification(otherUserTokens.data[i].token, 'New Request', '' + currUserInfo.name + ' (' + currUserInfo.email + ') sent you a friend request!')
+          sendNotification(otherUserTokens.data[i].token, 'New Request', '' + currUserInfo.name + ' (' + currUserInfo.email + ') sent you a friend request!', otherUserTokens.data[i].os)
       }
 
       return context;

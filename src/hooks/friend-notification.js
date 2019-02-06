@@ -23,7 +23,7 @@ module.exports = function (options = {}) {
       })
 
       for (let i=0; i<otherUserTokens.data.length; i++) {
-          sendNotification(otherUserTokens.data[i].token, 'New Friend', '' + currUserInfo.name + ' (' + currUserInfo.email + ') accepted your friend request!')
+          sendNotification(otherUserTokens.data[i].token, 'New Friend', '' + currUserInfo.name + ' (' + currUserInfo.email + ') accepted your friend request!',  otherUserTokens.data[i].os)
       }
 
       return context;

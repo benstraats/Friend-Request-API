@@ -8,10 +8,15 @@ module.exports = function (options = {}) {
   
         const currUser = "" + context.params.user._id
         const newToken = "" + context.data.token
+        const deviceOS = "" + context.data.os
         const constContext = context;
 
         if (newToken === undefined || newToken === "") {
           throw new FeathersError('No token in payload', 'Bad-Payload', 400);
+        }
+
+        if (deviceOS === undefined && !(deviceOS === 'ios' || deviceOS === 'android')) {
+          throw new FeathersError('os field in payload must be ios or android', 'Bad-Payload', 400);
         }
 
         let alreadySaved = false;
@@ -19,7 +24,7 @@ module.exports = function (options = {}) {
         //delete it if its on another user
         await context.service.find({
           query: {
-            token: newToken
+            token: newToken,
           }
         }).then((data) => {
           for (let i=0; i<data.data.length; i++) {
@@ -39,7 +44,8 @@ module.exports = function (options = {}) {
 
         context.data = {
           token: newToken,
-          userID: currUser
+          userID: currUser,
+          os: deviceOS
         }
     
         return context;
