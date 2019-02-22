@@ -32,8 +32,7 @@
   },
   "mongodb": "mongodb://localhost:27017/friend_request",
   "androidPNAuthorization": "key=REDACTED",
-  "iosKey": "REDACTED",
   "iosKeyID": "REDACTED",
   "iosTeamID": "REDACTED",
-  "iosNoteTopic": "REDACTED"
+  "iosBundleID": "REDACTED"
 }
