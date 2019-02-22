@@ -5,7 +5,7 @@ const { FeathersError } = require('@feathersjs/errors');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    const userUsername = context.data.username;
+    const userUsername = context.data.username || context.data.email;
 
     await context.service.find({
       query: {
