@@ -38,7 +38,7 @@ Simply run `npm test` and all your tests in the `test/` directory will be run.
 ## Changelog
 
 __1.0.0__
-- initial release!
+- Initial release!
 
 __1.1.0__
 - Added better errors

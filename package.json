@@ -13,6 +13,11 @@
     "name": "Ben Straatsma",
     "email": "benstraatsma@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/benstraats/Friend-Request-API.git"
+  },
+  "license": "MIT",
   "contributors": [],
   "bugs": {},
   "directories": {
