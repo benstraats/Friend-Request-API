@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-var objectid = require('objectid')
+var objectid = require('objectid');
 
 class Service {
   constructor (options) {
@@ -11,8 +11,8 @@ class Service {
   }
 
   async find (params) {
-    let currUser = '' + params.user._id
-    let app = this.app
+    let currUser = '' + params.user._id;
+    let app = this.app;
     let limit = params.query.$limit;
     let skip = params.query.$skip;
 
@@ -25,25 +25,25 @@ class Service {
         $skip: skip
       }
     }).then((data) => {
-      requestData.requests = data
+      requestData.requests = data;
 
       let ids = [];
       for (let i=0; i<data.data.length; i++) {
-        ids.push(objectid(data.data[i].requester))
+        ids.push(objectid(data.data[i].requester));
       }
 
       return app.service('users').find({
         query: {
           _id: {$in: ids},
           $limit: limit,
-          $select: ['email', 'name']
+          $select: ['username', 'name']
         }
       }).then((userData) => {
-        requestData.users = userData
+        requestData.users = userData;
 
-        return requestData
-      })
-    })
+        return requestData;
+      });
+    });
   }
 
   async get (id, params) {

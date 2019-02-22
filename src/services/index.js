@@ -5,6 +5,7 @@ const profile = require('./profile/profile.service.js');
 const search = require('./search/search.service.js');
 const myfriends = require('./myfriends/myfriends.service.js');
 const myrequests = require('./myrequests/myrequests.service.js');
+const pushnotifications = require('./pushnotifications/pushnotifications.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -14,4 +15,5 @@ module.exports = function (app) {
   app.configure(search);
   app.configure(myfriends);
   app.configure(myrequests);
+  app.configure(pushnotifications);
 };

@@ -7,13 +7,27 @@ module.exports = function (options = {}) {
   return async context => {
 
     if (context.params.user !== undefined && context.params.user !== null) {
+            
       const currUser = '' + context.params.user._id;
+      const givenToken = '' + context.id;
 
-      if (context.result.requestee !== currUser && context.result.requester !== currUser) {
-        throw new FeathersError('User not allowed to view this request', 'Not-Allowed', 403);
-      }
+      await context.service.find({
+        query: {
+          token: givenToken,
+          userID: currUser
+        }
+      }).then((data) => {
+        if (data.data.length) {
+          context.id = data.data[0]._id;
+        }
+        else {
+          throw new FeathersError('Token isn\'t saved', 'Not-Saved', 208);
+        }
+      });
+
     }
 
     return context;
   };
 };
+  

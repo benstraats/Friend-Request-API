@@ -1,8 +1,6 @@
 // Application hooks that run for every service
 const logger = require('./hooks/logger');
-
 const createdAt = require('./hooks/created-at');
-
 const updatedAt = require('./hooks/updated-at');
 
 module.exports = {

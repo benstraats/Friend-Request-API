@@ -4,15 +4,9 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-
-    if (context.params.user !== undefined && context.params.user !== null) {
-      const currUser = '' + context.params.user._id;
-      
-      context.params.query.$or= [{
-        requestee: currUser
-      }, {
-        requester: currUser
-      }];
+  
+    if (context.params.query.username !== undefined) {
+      context.params.query.username = {$regex: context.params.query.username, '$options' : 'i'};
     }
 
     return context;
