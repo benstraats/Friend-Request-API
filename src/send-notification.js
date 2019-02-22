@@ -7,7 +7,7 @@ module.exports = function (token, title, message, os) {
   if (os === 'ios') {
     let options = {
       token: {
-        key: config.iosKey,
+        key: './pathToKey',
         keyId: config.iosKeyID,
         teamId: config.iosTeamID
       },
@@ -23,7 +23,7 @@ module.exports = function (token, title, message, os) {
     note.sound = 'ping.aiff';
     note.alert = message;
     note.payload = { 'messageFrom': 'Friend Request' };
-    note.topic = config.iosNoteTopic;
+    note.topic = config.iosBundleID;
 
     apnProvider.send(note, token);
 

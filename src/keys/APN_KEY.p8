@@ -1,0 +1,3 @@
+-----BEGIN PRIVATE KEY-----
+KEY GOES HERE
+-----END PRIVATE KEY-----
