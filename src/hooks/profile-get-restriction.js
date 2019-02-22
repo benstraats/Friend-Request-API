@@ -7,10 +7,10 @@ module.exports = function (options = {}) {
   return async context => {
 
     if (context.params.user !== undefined && context.params.user !== null) {
-      const currUser = "" + context.params.user._id
+      const currUser = '' + context.params.user._id;
 
       if (context.result.userID !== currUser) {
-        const userID = context.result.userID
+        const userID = context.result.userID;
 
         //check if they're friends
         await context.app.service('friends').find({
@@ -27,7 +27,7 @@ module.exports = function (options = {}) {
           if (!data.data.length) {
             throw new FeathersError('Not allowed to view this profile', 'Not-Allowed', 403);
           }
-        })
+        });
       }
     }
     

@@ -6,13 +6,13 @@ module.exports = function (options = {}) {
   return async context => {
 
     if (context.params.user !== undefined && context.params.user !== null) {
-      const currUser = "" + context.params.user._id
+      const currUser = '' + context.params.user._id;
       
       context.params.query.$or= [{
         requestee: currUser
       }, {
         requester: currUser
-      }]
+      }];
     }
 
     return context;

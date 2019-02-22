@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-var objectid = require('objectid')
+var objectid = require('objectid');
 
 class Service {
   constructor (options) {
@@ -11,8 +11,8 @@ class Service {
   }
 
   async find (params) {
-    let currUser = '' + params.user._id
-    let app = this.app
+    let currUser = '' + params.user._id;
+    let app = this.app;
     let limit = params.query.$limit;
     let skip = params.query.$skip;
 
@@ -33,9 +33,9 @@ class Service {
       let ids = [];
       for (let i=0; i<data.data.length; i++) {
         if (('' + data.data[i].user1) === currUser) {
-          ids.push(objectid(data.data[i].user2))
+          ids.push(objectid(data.data[i].user2));
         } else {
-          ids.push(objectid(data.data[i].user1))
+          ids.push(objectid(data.data[i].user1));
         }
       }
 
@@ -43,14 +43,14 @@ class Service {
         query: {
           _id: {$in: ids},
           $limit: limit,
-          $select: ['email', 'name']
+          $select: ['username', 'name']
         }
       }).then((userData) => {
-        friendData.users = userData
+        friendData.users = userData;
 
-        return friendData
-      })
-    })
+        return friendData;
+      });
+    });
   }
 
   async get (id, params) {

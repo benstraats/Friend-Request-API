@@ -5,22 +5,22 @@
 module.exports = function (options = {}) {
   return async context => {
 
-    const search = context.params.query.$search
+    const search = context.params.query.$search;
     
-    delete context.params.query.$search
+    delete context.params.query.$search;
 
     if (search !== undefined) {
       context.params.query.$or = [
-          {name: {$regex: search}},
-          {email: {$regex: search}}
-        ]
+        {name: {$regex: search}},
+        {username: {$regex: search}}
+      ];
 
       context.params.query.$sort = {
         name: 1,
-        email: 1
-      }
+        username: 1
+      };
 
-      context.params.query.$select = ['name', 'email']
+      context.params.query.$select = ['name', 'username'];
     }
 
     return context;

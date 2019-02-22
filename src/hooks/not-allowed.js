@@ -4,7 +4,7 @@ const { FeathersError } = require('@feathersjs/errors');
 
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
-  return async context => {
+  return async () => {
     throw new FeathersError('Not allowed', 'Not-Allowed', 403);
   };
 };

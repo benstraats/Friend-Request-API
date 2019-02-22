@@ -8,7 +8,7 @@ module.exports = function (options = {}) {
     if (context.params.query !== undefined && context.params.query !== null && 
       context.params.query.$limit !== undefined && context.params.query.$limit !== null && 
       context.params.query.$limit > 49) {
-      context.params.query.$limit = 49
+      context.params.query.$limit = 49;
     }
     return context;
   };

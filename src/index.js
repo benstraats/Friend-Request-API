@@ -5,27 +5,29 @@ const port = app.get('port');
 
 var http = require('http');
 http.createServer(function (req, res) {
-    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-    res.end();
+  res.writeHead(301, { 'Location': 'https://' + req.headers['host'] + req.url });
+  res.end();
 }).listen(80);
 
 // HTTPS SUPPORT
 const https = require('https');
 const fs = require('fs');
 
+let parentPath = './cert/';
+
 let authData = {
 // use your own keys
-  key: fs.readFileSync('/path/to/private.key'),
-  cert: fs.readFileSync('/path/to/certificate.crt'),
+  key: fs.readFileSync(parentPath + 'private.key'),
+  cert: fs.readFileSync(parentPath + 'certificate.crt'),
   ca: [
-        fs.readFileSync('/path/to/intermediateCertOne.crt'),
-        fs.readFileSync('/path/to/intermediateCertTwo.crt') 
-      ]
+    fs.readFileSync(parentPath + 'intermediateCertOne.crt'),
+    fs.readFileSync(parentPath + 'intermediateCertTwo.crt') 
+  ]
 };
 
 let serverHttps = https.createServer(authData, app);
 
-app.setup(serverHttps)
+app.setup(serverHttps);
 
 serverHttps.listen(app.get('port'), function () {
   console.log('Express https server listening on port ', port);

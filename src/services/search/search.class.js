@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-const sendNotification = require('../../send-notification');
 
 class Service {
   constructor (options) {
@@ -16,8 +15,8 @@ class Service {
 
   async get (id, params) {
 
-    let currUser = '' + params.user._id
-    let app = this.app
+    let currUser = '' + params.user._id;
+    let app = this.app;
     let limit = params.query.$limit;
     let skip = params.query.$skip;
 
@@ -25,13 +24,13 @@ class Service {
       query: {
         $or: [
           {name:{$regex: id, '$options' : 'i'}},
-          {email:{$regex: id, '$options' : 'i'}}
+          {username:{$regex: id, '$options' : 'i'}}
         ],
         $sort: {
           name: 1,
-          email: 1
+          username: 1
         },
-        $select: ['name', 'email'],
+        $select: ['name', 'username'],
         $limit: limit,
         $skip: skip
       }
@@ -44,7 +43,7 @@ class Service {
         ids.push('' + data.data[i]._id);
       }
 
-      searchData.users = data
+      searchData.users = data;
 
       return app.service('friends').find({
         query: {
@@ -61,7 +60,7 @@ class Service {
           $limit: limit
         }
       }).then((friendData) => {
-        searchData.friends = friendData
+        searchData.friends = friendData;
 
         //TODO: move this outside so it runs so it runs async with friends
         return app.service('requests').find({
@@ -79,12 +78,12 @@ class Service {
             $limit: limit
           }
         }).then((requestData) => {
-          searchData.requests = requestData
+          searchData.requests = requestData;
   
-          return searchData
-        })
-      })
-    })
+          return searchData;
+        });
+      });
+    });
   }
 
   async create (data, params) {

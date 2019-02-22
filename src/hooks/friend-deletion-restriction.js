@@ -7,8 +7,8 @@ module.exports = function (options = {}) {
   return async context => {
 
     if (context.params.user !== undefined && context.params.user !== null) {
-      const id = context.id
-      const currUser = "" + context.params.user._id
+      const id = context.id;
+      const currUser = '' + context.params.user._id;
 
       if (id === null) {
         //make sure params are safe here and we dont delete a good request
@@ -16,7 +16,7 @@ module.exports = function (options = {}) {
           user1: currUser
         }, {
           user2: currUser
-        }]
+        }];
       } else {
         await context.service.get(id).then((data) => {
           if (currUser !== data.user1 && currUser !== data.user2) {

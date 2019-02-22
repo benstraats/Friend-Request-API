@@ -8,8 +8,6 @@ const requestCreationValidation = require('../../hooks/request-creation-validati
 const requestDeletionRestriction = require('../../hooks/request-deletion-restriction');
 const requestFindRestriction = require('../../hooks/request-find-restriction');
 const requestNotification = require('../../hooks/request-notification');
-const attachUserInfo = require('../../hooks/attach-user-info');
-const setLimitMax = require('../../hooks/set-limit-max');
 
 module.exports = {
   before: {

@@ -7,7 +7,7 @@ module.exports = function (options = {}) {
   return async context => {
 
     if (context.params.user !== undefined && context.params.user !== null) {
-      const currUser = "" + context.params.user._id
+      const currUser = '' + context.params.user._id;
 
       if (context.result.user1 !== currUser && context.result.user2 !== currUser) {
         throw new FeathersError('User not allowed to view this friendship', 'Not-Allowed', 403);

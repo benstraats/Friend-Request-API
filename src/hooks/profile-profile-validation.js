@@ -5,7 +5,7 @@ const { FeathersError } = require('@feathersjs/errors');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    const currUser = "" + context.params.user._id
+    const currUser = '' + context.params.user._id;
 
     /*
     Must be in this format:
@@ -19,7 +19,7 @@ module.exports = function (options = {}) {
       ...
     ]
     */
-    let curatedProfile = context.data.profile
+    let curatedProfile = context.data.profile;
 
     if (context.data.profile.length > 50) {
       throw new FeathersError('Profile has more than 50 rows', 'Bad-Request', 400);
@@ -35,9 +35,9 @@ module.exports = function (options = {}) {
       if (!context.data.profile[i].value) {
         throw new FeathersError('Row must have a value', 'Bad-Request', 400);
       }
-      let rowSave = context.data.profile[i].row
-      let keySave = context.data.profile[i].key
-      let valueSave = context.data.profile[i].value
+      let rowSave = context.data.profile[i].row;
+      let keySave = context.data.profile[i].key;
+      let valueSave = context.data.profile[i].value;
 
       if (keySave.length > 200) {
         throw new FeathersError('Rows key is longer than 200 characters', 'Bad-Request', 400);
@@ -47,13 +47,13 @@ module.exports = function (options = {}) {
         throw new FeathersError('Rows value is longer than 200 characters', 'Bad-Request', 400);
       }
 
-      curatedProfile[i] = {row:rowSave, key:keySave, value:valueSave}
+      curatedProfile[i] = {row:rowSave, key:keySave, value:valueSave};
     }
    
     context.data = {
       userID: currUser,
       profile: curatedProfile
-    }
+    };
 
     return context;
   };

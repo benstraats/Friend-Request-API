@@ -5,7 +5,7 @@ const { FeathersError } = require('@feathersjs/errors');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    const currUser = "" + context.params.user._id
+    const currUser = '' + context.params.user._id;
 
     //Check request has a requestee
     if(!context.data.requesteeID) {
@@ -20,7 +20,7 @@ module.exports = function (options = {}) {
     }
 
     //Check target is valid
-    await context.app.service('users').get(requestedUser)
+    await context.app.service('users').get(requestedUser);
 
     //check not friends
     await context.app.service('friends').find({
@@ -37,7 +37,7 @@ module.exports = function (options = {}) {
       if (data.data.length) {
         throw new FeathersError('Users are already friends.', 'Not-Allowed', 403);
       }
-    })
+    });
 
     await context.service.find({
       query: {
@@ -53,12 +53,12 @@ module.exports = function (options = {}) {
       if (data.data.length) {
         throw new FeathersError('There is already a request between users', 'Not-Allowed', 403);
       }
-    })
+    });
 
     context.data = {
       requestee: requestedUser,
       requester: currUser
-    }
+    };
 
     return context;
   };
