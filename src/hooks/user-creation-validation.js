@@ -6,16 +6,17 @@ const { FeathersError } = require('@feathersjs/errors');
 module.exports = function (options = {}) {
   return async context => {
 
-    let username = context.data.username;
+    //Have to do email for backwards compatibility
+    let username = context.data.username || context.data.email;
     let name = context.data.name;
     let password = context.data.password;
 
     //check it contains username, name, and password
-    if(!context.data.username) {
+    if(!username) {
       throw new FeathersError('A user must have an username', 'Bad-Request', 400);
-    } else if(!context.data.name) {
+    } else if(!name) {
       throw new FeathersError('A user must have a name', 'Bad-Request', 400);
-    } else if(!context.data.password) {
+    } else if(!password) {
       throw new FeathersError('A user much have a password', 'Bad-Request', 400);
     }
 
@@ -61,11 +62,11 @@ module.exports = function (options = {}) {
       throw new FeathersError('Username contains invalid characters', 'Bad-Request', 400);
     }
     
-
     //make sure no extra data is inserted
     context.data = {
       name: name,
       username: username,
+      email: username,
       password: password
     };
 
