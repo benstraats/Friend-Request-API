@@ -30,7 +30,7 @@ class Service {
           name: 1,
           username: 1
         },
-        $select: ['name', 'username'],
+        $select: ['name', 'username', 'email'],
         $limit: limit,
         $skip: skip
       }
