@@ -9,6 +9,10 @@ module.exports = function (options = {}) {
       context.params.query.username = {$regex: context.params.query.username, '$options' : 'i'};
     }
 
+    if (context.params.query.email !== undefined) {
+      context.params.query.email = {$regex: context.params.query.email, '$options' : 'i'};
+    }
+
     return context;
   };
 };

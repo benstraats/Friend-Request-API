@@ -36,7 +36,7 @@ class Service {
         query: {
           _id: {$in: ids},
           $limit: limit,
-          $select: ['username', 'name']
+          $select: ['username', 'name', 'email']
         }
       }).then((userData) => {
         requestData.users = userData;
